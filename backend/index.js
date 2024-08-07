@@ -15,29 +15,30 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const corsOptions = {
-	origin: (origin, callback) => {
-		const allowedOrigins = [
-			"https://cks-ai.vercel.app",
-			"http://localhost:5173",
-		];
+// const corsOptions = {
+// 	origin: (origin, callback) => {
+// 		const allowedOrigins = [
+// 			"https://cks-ai.vercel.app",
+// 			"http://localhost:5173",
+// 		];
 
-		if (!origin || allowedOrigins.includes(origin)) {
-			callback(null, true);
-		} else {
-			callback(new Error("Not allowed by CORS"));
-		}
-	},
-	methods: ["GET", "POST", "PUT", "DELETE"], // Adjust as needed
-	allowedHeaders: ["Content-Type", "Authorization"], // Adjust as needed
-};
+// 		if (!origin || allowedOrigins.includes(origin)) {
+// 			callback(null, true);
+// 		} else {
+// 			callback(new Error("Not allowed by CORS"));
+// 		}
+// 	},
+// 	methods: ["GET", "POST", "PUT", "DELETE"], // Adjust as needed
+// 	allowedHeaders: ["Content-Type", "Authorization"], // Adjust as needed
+// };
+// app.use(cors(corsOptions));
 
-app.use(cors(corsOptions));
-// app.use(
-// 	cors({
-// 		origin: process.env.CLIENT_URL,
-// 	})
-// );
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+		credentials: true,
+	})
+);
 
 app.use(express.json());
 
