@@ -182,7 +182,11 @@ app.use((err, req, res, next) => {
 	res.status(401).send("Unauthenticated!");
 });
 
-// app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
 
 app.get("/", (req, res) => {
 	res.status(200).json({ message: "It is running." });
@@ -190,7 +194,7 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
 	connect();
-	console.log("Server is running on 3000");
+	console.log(`Server running on port ${port}`);
 });
 
-// export default app;
+export default app;
