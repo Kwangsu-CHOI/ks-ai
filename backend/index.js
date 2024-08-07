@@ -16,7 +16,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const corsOptions = {
-	origin: "https://cks-ai.vercel.app" || "http://localhost:5173", // Your client app's domain
+	origin: (origin, callback) => {
+		const allowedOrigins = [
+			"https://cks-ai.vercel.app",
+			"http://localhost:5173",
+		];
+
+		if (!origin || allowedOrigins.includes(origin)) {
+			callback(null, true);
+		} else {
+			callback(new Error("Not allowed by CORS"));
+		}
+	},
 	methods: ["GET", "POST", "PUT", "DELETE"], // Adjust as needed
 	allowedHeaders: ["Content-Type", "Authorization"], // Adjust as needed
 };
