@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./chatList.css";
 import { useQuery } from "@tanstack/react-query";
-import { useClerk } from '"@clerk/clerk-react"';
+import { useClerk } from "@clerk/clerk-react";
 const ChatList = () => {
 	const { session } = useClerk();
 	const { isPending, error, data } = useQuery({
