@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import "./chatList.css";
 import { useQuery } from "@tanstack/react-query";
+import { useClerk } from '"@clerk/clerk-react"';
 const ChatList = () => {
+	const { session } = useClerk();
 	const { isPending, error, data } = useQuery({
 		queryKey: ["userChats"],
 		queryFn: () =>
-			fetch(
-				`${import.meta.env.VITE_API_URL}/api/userchats`
-				// {credentials: "include",}
-			).then((res) => res.json()),
+			fetch(`${import.meta.env.VITE_API_URL}/api/userchats`, {
+				credentials: "include",
+				headers: {
+					Authorization: `Bearer ${session.token}`, // Ensure session.token or equivalent is used
+				},
+			}).then((res) => res.json()),
 	});
 
 	return (

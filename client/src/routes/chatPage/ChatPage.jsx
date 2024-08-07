@@ -14,12 +14,9 @@ const ChatPage = () => {
 	const { isPending, error, data } = useQuery({
 		queryKey: ["chat", chatId],
 		queryFn: () =>
-			fetch(
-				`${import.meta.env.VITE_API_URL}/api/chats/${chatId}`
-				// 	{
-				// 	credentials: "include",
-				// }
-			).then((res) => res.json()),
+			fetch(`${import.meta.env.VITE_API_URL}/api/chats/${chatId}`, {
+				credentials: "include",
+			}).then((res) => res.json()),
 	});
 
 	const handleDelete = async () => {
@@ -29,7 +26,7 @@ const ChatPage = () => {
 					`${import.meta.env.VITE_API_URL}/api/chats/${chatId}`,
 					{
 						method: "DELETE",
-						// credentials: "include",
+						credentials: "include",
 						header: {
 							"Content-Type": "application/josn",
 						},

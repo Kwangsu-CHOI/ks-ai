@@ -10,7 +10,7 @@ const DashboardPage = () => {
 		mutationFn: (text) => {
 			return fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
 				method: "POST",
-				// credentials: "include",
+				credentials: "include",
 				headers: {
 					"Content-Type": "application/json",
 				},
