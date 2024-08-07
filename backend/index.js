@@ -32,7 +32,6 @@ const connect = async () => {
 		console.log(error);
 	}
 };
-connect();
 
 const imagekit = new ImageKit({
 	urlEndpoint: process.env.IMAGE_KIT_ENDPOINT,
@@ -193,3 +192,5 @@ app.listen(port, () => {
 	connect();
 	console.log("Server is running on 3000");
 });
+
+export default app;
