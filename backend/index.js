@@ -32,6 +32,7 @@ const connect = async () => {
 		console.log(error);
 	}
 };
+connect();
 
 const imagekit = new ImageKit({
 	urlEndpoint: process.env.IMAGE_KIT_ENDPOINT,
