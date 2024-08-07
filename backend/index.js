@@ -15,12 +15,18 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(
-	cors({
-		// origin: process.env.CLIENT_URL,
-		origin: "https://cks-ai.vercel.app",
-	})
-);
+const corsOptions = {
+	origin: "https://cks-ai.vercel.app", // Your client app's domain
+	methods: ["GET", "POST", "PUT", "DELETE"], // Adjust as needed
+	allowedHeaders: ["Content-Type", "Authorization"], // Adjust as needed
+};
+
+app.use(cors(corsOptions));
+// app.use(
+// 	cors({
+// 		origin: process.env.CLIENT_URL,
+// 	})
+// );
 
 app.use(express.json());
 
