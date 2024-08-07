@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import ImageKit from "imagekit";
 import mongoose from "mongoose";
-import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
+// import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 
 import UserChats from "./models/userChats.js";
 import Chat from "./models/chat.js";
@@ -50,7 +50,7 @@ app.get("/api/upload", (req, res) => {
 // 	res.send("success!!!");
 // });
 
-app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
+app.post("/api/chats", async (req, res) => {
 	const userId = req.auth.userId;
 	const { text } = req.body;
 
@@ -98,7 +98,7 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 	}
 });
 
-app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
+app.get("/api/userchats", async (req, res) => {
 	const userId = req.auth.userId;
 
 	try {
@@ -110,7 +110,7 @@ app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
 	}
 });
 
-app.get("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
+app.get("/api/chats/:id", async (req, res) => {
 	const userId = req.auth.userId;
 
 	try {
@@ -122,7 +122,7 @@ app.get("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
 	}
 });
 
-app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
+app.put("/api/chats/:id", async (req, res) => {
 	const userId = req.auth.userId;
 
 	const { question, answer, img } = req.body;
@@ -152,7 +152,7 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
 	}
 });
 
-app.delete("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
+app.delete("/api/chats/:id", async (req, res) => {
 	const userId = req.auth.userId;
 
 	try {
