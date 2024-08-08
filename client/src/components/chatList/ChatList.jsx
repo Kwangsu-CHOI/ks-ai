@@ -10,6 +10,7 @@ const ChatList = () => {
 				credentials: "include",
 			}).then((res) => res.json()),
 	});
+	console.log(data);
 
 	return (
 		<div className="chatList">
